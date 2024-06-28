@@ -1,8 +1,7 @@
-include ~/.cache/wal/colors-sway
-
 ### Autostart
 exec swayidle
 exec mako
+exec pipewire
 
 set $mod Mod4
 set $left h
@@ -15,16 +14,17 @@ set $term foot
 set $big_monitor HDMI-A-1
 set $laptop_monitor eDP-1
 
-
 default_border pixel 3
 gaps inner 0
 smart_borders on
 smart_gaps on
 floating_modifier $mod normal
 
-
-set $active $color1
-set $primary $color4
+set $primary #b8bb26
+set $background #1d2021
+set $foreground #fbf1c7
+set $active #fb4934
+set $wallpaper ~/.wallpaper.png
 
 set $opts -c -i -B 4 -W 0.6 --fn 'JetBrainsMono Nerd Font 13' --bdr '$primary' --nb '$background' --ab '$background' --hf '$active' -l 15 -s --fixed-height --tf "$primary" --tb "$background" --tf "$primary" --fb "$background" --ff "$foreground" --hf "$active" --hb "$background"
 set $menu bemenu-run $opts -p "Choose application: "

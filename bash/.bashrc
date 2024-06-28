@@ -13,13 +13,15 @@ alias yta='yt-dlp -x --audio-quality 0 --audio-format opus'
 # compile latex document to pdf
 alias lm='latexmk -pdf -pvc -output-directory=output main.tex'
 
+# void specific aliases
+alias reboot='loginctl reboot'
+alias poweroff='loginctl poweroff'
+
 # git
 alias gs='git status'
 alias gd='git diff'
 alias gc='git commit'
 alias gr='git remote --verbose'
-alias nc='ncmpcpp'
-alias rr='ranger'
 
 # python's virtual environments
 alias activate='source .venv/bin/activate'
@@ -45,3 +47,7 @@ PS1='\[\e[93m\][\u\[\e[0m\]@\[\e[95m\]\H]\[\e[0m\] \[\e[96m\]\w\[\e[0m\] \[\e[91
 
 export GPG_TTY=$(tty)
 export EDITOR='nvim'
+# start sway session
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+  exec dbus-run-session sway
+fi

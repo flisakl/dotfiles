@@ -1,4 +1,7 @@
-@import "/home/luke/.cache/wal/colors-waybar.css";
+@define-color primary #b8bb26;
+@define-color background #1d2021;
+@define-color foreground #fbf1c7;
+@define-color active #fb4934;
 
 
 window#waybar {
@@ -11,14 +14,6 @@ window#waybar {
 
 
 #workspaces button { padding: 0; margin: 0 5px; color: @foreground;}
-#workspaces button.focused { color: @color1; }
-
-.modules-right { color: @background; }
-
+#workspaces button.focused { color: @primary; }
 #mpd { color: @color3; margin-left: 10px;}
-
 #pulseaudio, #clock, #battery, #disk, #network { padding: 0 5px; }
-#pulseaudio { background-color: @color4; }
-#network { background-color: @color3; }
-#disk { background-color: @color2; }
-#battery { background-color: @color1; }

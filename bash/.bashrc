@@ -15,7 +15,11 @@ alias lm='latexmk -pdf -pvc -output-directory=output main.tex'
 
 # void specific aliases
 alias reboot='loginctl reboot'
-alias poweroff='loginctl poweroff'
+poweroff () {
+    # This will also poweroff raspberry server
+    ssh home 'sudo poweroff'
+    loginctl poweroff
+}
 
 # git
 alias gs='git status'

@@ -20,7 +20,7 @@ return {
 
             require('mason').setup({})
             require('mason-lspconfig').setup({
-                ensure_installed = {'pyright', 'volar', 'bashls'},
+                ensure_installed = {'pylsp', 'volar', 'bashls'},
                 handlers = {
                     function(server_name)
                         require('lspconfig')[server_name].setup({})

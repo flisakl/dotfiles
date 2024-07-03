@@ -1,0 +1,9 @@
+[user]
+	name = Łukasz Flisak
+	email = lu.dev00@gmail.com
+[init]
+	defaultBranch = master
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true

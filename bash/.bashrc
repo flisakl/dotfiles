@@ -17,7 +17,7 @@ alias lm='latexmk -pdf -pvc -output-directory=output main.tex'
 alias reboot='loginctl reboot'
 poweroff () {
     # This will also poweroff raspberry server
-    ssh home 'sudo poweroff'
+    # ssh home 'sudo poweroff'
     loginctl poweroff
 }
 

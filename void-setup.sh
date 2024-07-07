@@ -2,16 +2,16 @@
 
 # List of packages to install
 web_browsers='qutebrowser qt5-wayland qt6-wayland firefox python3-adblock'
-system='xorg xorg-server-xwayland xdg-user-dirs'
+system='xorg xorg-server-xwayland xdg-user-dirs connman cronie pipewire libjack-pipewire pamixer pavucontrol brightnessctl'
 terminals='foot'
-tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp'
+tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot'
 misc='zathura zathura-pdf-mupdf'
 window_managers='polkit sway elogind swaybg swaylock swayidle Waybar'
-development='base-devel neovim'
+development='base-devel neovim docker openssh gnupg'
 
 # Packages
 sudo xbps-install -Su
-sudo xbps-install ${web_browsers} ${window_managers} ${terminals} ${system} ${tools} ${development}
+sudo xbps-install "${web_browsers} ${window_managers} ${terminals} ${system} ${tools} ${development}"
 
 # Services
 sudo rm /var/service/dhcpd
@@ -25,6 +25,10 @@ sudo ln -s /etc/sv/dbus /var/service
 sudo mkdir -p /etc/pipewire/pipewire.conf.d
 sudo ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
 sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
+
+# Disable bitmap fonts
+sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
+sudo xbps-reconfigure -f fontconfig
 
 # Copy dotfiles files
 # XDG User dirs

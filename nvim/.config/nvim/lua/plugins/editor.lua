@@ -59,6 +59,7 @@ return {
             configs.setup({
                 ensure_installed = { "lua", "vim", "html", "javascript", "css", "python", "markdown" },
                 sync_install = false,
+                auto_install = true,
                 highlight = { enable = true },
                 indent = { enable = true },  
             })

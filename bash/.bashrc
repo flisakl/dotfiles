@@ -10,6 +10,9 @@ alias grep='grep --color=auto'
 alias sb="source ~/.bashrc"
 alias yta='yt-dlp -x --audio-quality 0 --audio-format opus'
 
+# play videos with mpv from playlist file
+alias mpvp='mpv --save-position-on-quit --playlist=playlist.txt'
+
 # compile latex document to pdf
 alias lm='latexmk -pdf -pvc -output-directory=output main.tex'
 
@@ -45,7 +48,6 @@ tl () {
 }
 
 
-# PS1='[\u@\h \W]\$ '
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'
 PS1='\[\e[93m\][\u\[\e[0m\]@\[\e[95m\]\H]\[\e[0m\] \[\e[96m\]\w\[\e[0m\] \[\e[91m\]${PS1_CMD1}\[\e[0m\] \$ '
 

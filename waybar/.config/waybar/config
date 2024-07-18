@@ -1,5 +1,5 @@
 {
-"modules-left": ["sway/workspaces"],
+"modules-left": ["sway/workspaces", "mpd"],
 "modules-center": ["clock"],
 "modules-right": ["pulseaudio", "network", "disk", "battery"],
 

@@ -1,7 +1,17 @@
 ### Autostart
 exec swayidle
 exec mako
+exec mpd
 exec pipewire
+
+# GTK
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Vimix-dark-ruby'
+    gsettings set $gnome-schema icon-theme 'Vimix-Ruby-dark'
+    gsettings set $gnome-schema cursor-theme 'Vimix-cursors'
+    gsettings set $gnome-schema color-scheme 'prefer-dark'
+}
 
 set $mod Mod4
 set $left h
@@ -50,8 +60,7 @@ input "*" {
 ### Key bindings
 
 # Take screenshot
-bindsym Print exec ~/.scripts/grimshot --notify save area
-bindsym Shift+Print exec ~/.scripts/grimshot --notify save output
+bindsym Print exec grimshot --notify save area
 
 # Switch keyboard layout
 bindsym $mod+period input type:keyboard xkb_switch_layout next

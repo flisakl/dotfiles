@@ -1,17 +1,19 @@
 #!/bin/bash
 
+here="$(pwd)"
+
 # List of packages to install
 web_browsers='qutebrowser qt5-wayland qt6-wayland firefox python3-adblock'
-system='xorg xorg-server-xwayland xdg-user-dirs connman cronie pipewire libjack-pipewire pamixer pavucontrol brightnessctl'
+system='xorg xorg-server-xwayland xdg-user-dirs connman cronie pipewire libjack-pipewire pamixer pavucontrol brightnessctl mako wireplumber wl-clipboard bemenu'
 terminals='foot'
-tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot'
-misc='zathura zathura-pdf-mupdf'
+tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot stow ffmpeg'
+misc='zathura zathura-pdf-mupdf syncthing mpv mpc mpd ncmpcpp yt-dlp'
 window_managers='polkit sway elogind swaybg swaylock swayidle Waybar'
-development='base-devel neovim docker openssh gnupg'
+development='base-devel neovim docker docker-compose openssh gnupg pandoc git'
 
 # Packages
 sudo xbps-install -Su
-sudo xbps-install "${web_browsers} ${window_managers} ${terminals} ${system} ${tools} ${development}"
+sudo xbps-install "${web_browsers} ${misc} ${window_managers} ${terminals} ${system} ${tools} ${development}"
 
 # Services
 sudo rm /var/service/dhcpd
@@ -31,5 +33,13 @@ sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d
 sudo xbps-reconfigure -f fontconfig
 
 # Copy dotfiles files
+rm ~/.bash*
+cd $here
+stow -t ~ *
+
 # XDG User dirs
-# GPG and SSH keys
+cd
+awk '{ match($0, /HOME\/([A-Za-z\/]+)/, groups); if (groups[1] != "") print groups[1] }' ~/.config/user-dirs.dirs | xargs mkdir -p
+
+# Node version manager (for some neovim language servers)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash

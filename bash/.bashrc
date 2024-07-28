@@ -29,6 +29,10 @@ alias gs='git status'
 alias gd='git diff'
 alias gc='git commit'
 alias gr='git remote --verbose'
+alias gl='git log --oneline --graph'
+alias gb='git branch -a --column'
+alias glc="git log --oneline --graph | wc -l"
+alias gss='git switch'
 
 # python's virtual environments
 alias activate='source .venv/bin/activate'

@@ -55,6 +55,7 @@ tl () {
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'
 PS1='\[\e[93m\][\u\[\e[0m\]@\[\e[95m\]\H]\[\e[0m\] \[\e[96m\]\w\[\e[0m\] \[\e[91m\]${PS1_CMD1}\[\e[0m\] \$ '
 
+export PATH="${PATH}:${HOME}/.scripts/"
 export GPG_TTY=$(tty)
 export EDITOR='nvim'
 # start sway session

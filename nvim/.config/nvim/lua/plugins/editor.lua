@@ -52,6 +52,7 @@ return {
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
+        dependencies = "nvim-treesitter/nvim-treesitter-context",
         build = ":TSUpdate",
         config = function()
             local configs = require("nvim-treesitter.configs")
@@ -110,5 +111,13 @@ return {
             require("nvim-tree").setup {}
             vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<cr>', {})
         end,
+    },
+    -- indentation guides
+    { "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {},
+        config = function()
+            require("ibl").setup()
+        end
     }
 }

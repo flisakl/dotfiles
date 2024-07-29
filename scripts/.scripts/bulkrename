@@ -1,0 +1,72 @@
+#!/usr/bin/python
+
+import os
+import subprocess
+import argparse
+
+cwd = os.getcwd()
+editor = os.environ["EDITOR"]
+all_files = os.listdir()
+tmp_filename = "fnames"
+
+
+def pick_action():
+    try:
+        opt = int(input(
+            "\n1. Rename files\n2. Abort\n3. Process further\nChoose action: "
+        ))
+        if opt == 1:
+            return True
+        if opt == 3:
+            process_files()
+        return False
+    except ValueError:
+        return pick_action()
+
+
+def process_files():
+    '''
+    Starts user preferred text editor for editing filenames
+
+    $EDITOR environment variable has to set.
+    '''
+    subprocess.run([editor, path])
+
+    with open(tmp_filename, 'r') as temp_file:
+        new_names = [line.strip() for line in temp_file.readlines()]
+
+    comb = list(zip(files, new_names))
+
+    for old, new in comb:
+        print(f"{old} --> {new}")
+
+    if pick_action():
+        for old, new in comb:
+            os.replace(old, new)
+
+
+
+parser = argparse.ArgumentParser(
+    prog='bulkrename',
+    description='Rename many files at once based on arguments')
+
+parser.add_argument('-e', '--extension',
+                    help='Select files with matching extension')
+
+args = parser.parse_args()
+if args.extension:
+    files = []
+    for f in all_files:
+        if f.split('.')[-1] == args.extension:
+            files.append(f)
+else:
+    files = all_files
+
+with open(tmp_filename, 'w') as temp_file:
+    temp_file.write('\n'.join(files) + '\n')
+
+path = os.path.join(os.getcwd(), tmp_filename)
+
+
+process_files()
+os.remove(tmp_filename)

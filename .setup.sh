@@ -6,14 +6,14 @@ here="$(pwd)"
 web_browsers='qutebrowser qt5-wayland qt6-wayland firefox python3-adblock'
 system='xorg xorg-server-xwayland xdg-user-dirs connman cronie pipewire libjack-pipewire pamixer pavucontrol brightnessctl mako wireplumber wl-clipboard bemenu'
 terminals='foot'
-tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot stow ffmpeg'
+tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot stow ffmpeg socklog-void'
 misc='zathura zathura-pdf-mupdf syncthing mpv mpc mpd ncmpcpp yt-dlp'
 window_managers='polkit sway elogind swaybg swaylock swayidle Waybar'
 development='base-devel neovim docker docker-compose openssh gnupg pandoc git'
 
 # Packages
 sudo xbps-install -Su
-sudo xbps-install "${web_browsers} ${misc} ${window_managers} ${terminals} ${system} ${tools} ${development}"
+sudo xbps-install ${web_browsers} ${misc} ${window_managers} ${terminals} ${system} ${tools} ${development}
 
 # Services
 sudo rm /var/service/dhcpd
@@ -22,6 +22,11 @@ sudo ln -s /etc/sv/connmand /var/service
 sudo ln -s /etc/sv/docker /var/service
 sudo ln -s /etc/sv/cronie /var/service
 sudo ln -s /etc/sv/dbus /var/service
+sudo ln -s /etc/sv/socklog-unix /var/service
+sudo ln -s /etc/sv/nanoklogd /var/service
+
+# Groups
+sudo usermod -a -G docker,socklog ${USER}
 
 # Pipewire
 sudo mkdir -p /etc/pipewire/pipewire.conf.d

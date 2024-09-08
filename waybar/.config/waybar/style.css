@@ -1,8 +1,17 @@
-@define-color primary #b8bb26;
-@define-color background #1d2021;
-@define-color foreground #fbf1c7;
-@define-color active #fb4934;
-
+@define-color red #C34043;
+@define-color green #76946A;
+@define-color yellow #C0A36E;
+@define-color blue #7E9CD8;
+@define-color purple #957FB8;
+@define-color aqua #6A9589;
+@define-color grey #727169;
+@define-color brightRed #E82424;
+@define-color brightGreen #98BB6C;
+@define-color brightYellow #E6C384;
+@define-color brightBlue #7FB4CA;
+@define-color brightAqua #7AA89F;
+@define-color foreground #DCD7BA;
+@define-color background #16161D;
 
 window#waybar {
     background-color: @background;
@@ -14,6 +23,11 @@ window#waybar {
 
 
 #workspaces button { padding: 0; margin: 0 5px; color: @foreground;}
-#workspaces button.focused { color: @primary; }
-#mpd { color: @color3; margin-left: 10px;}
+#workspaces button.focused { color: @brightBlue; }
+#mpd { color: @purple; margin-left: 10px;}
 #pulseaudio, #clock, #battery, #disk, #network { padding: 0 5px; }
+
+#pulseaudio { color: @brightBlue; }
+#disk { color: @brightGreen; }
+#network { color: @brightYellow; }
+#battery { color: @red; }

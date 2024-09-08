@@ -28,7 +28,6 @@ o.wrap = false
 o.lazyredraw = true
 o.number = true
 o.relativenumber = true
-o.termguicolors = true
 o.cursorline = true
 o.colorcolumn = '81'
 o.laststatus = 3

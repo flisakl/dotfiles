@@ -1,17 +1,7 @@
 ### Autostart
 exec swayidle
 exec mako
-exec mpd
 exec pipewire
-
-# GTK
-set $gnome-schema org.gnome.desktop.interface
-exec_always {
-    gsettings set $gnome-schema gtk-theme 'Vimix-dark-ruby'
-    gsettings set $gnome-schema icon-theme 'Vimix-Ruby-dark'
-    gsettings set $gnome-schema cursor-theme 'Vimix-cursors'
-    gsettings set $gnome-schema color-scheme 'prefer-dark'
-}
 
 set $mod Mod4
 set $left h
@@ -30,10 +20,10 @@ smart_borders on
 smart_gaps on
 floating_modifier $mod normal
 
-set $primary #b8bb26
-set $background #1d2021
-set $foreground #fbf1c7
-set $active #fb4934
+set $primary #e6c384
+set $background #16161D
+set $foreground #dcd7ba
+set $active #c34043
 set $wallpaper ~/.wallpaper.png
 
 set $opts -c -i -B 4 -W 0.6 --fn 'JetBrainsMono Nerd Font 13' --bdr '$primary' --nb '$background' --ab '$background' --hf '$active' -l 15 -s --fixed-height --tf "$primary" --tb "$background" --tf "$primary" --fb "$background" --ff "$foreground" --hf "$active" --hb "$background"

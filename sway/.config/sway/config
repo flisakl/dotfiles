@@ -46,6 +46,7 @@ input "*" {
         xkb_layout "pl(colemak_dh_ansi),pl"
         xkb_options caps:escape
 }
+# seat "*" hide_cursor when-typing enable
 
 ### Key bindings
 

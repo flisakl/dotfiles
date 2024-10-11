@@ -9,7 +9,7 @@ terminals='foot'
 tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot stow ffmpeg socklog-void'
 misc='zathura zathura-pdf-mupdf mpv mpc mpd ncmpcpp yt-dlp'
 window_managers='polkit sway elogind swaybg swaylock swayidle Waybar'
-development='base-devel neovim docker docker-compose openssh gnupg pandoc git'
+development='base-devel neovim docker docker-compose docker-buildx openssh gnupg pandoc git'
 
 # Packages
 sudo xbps-install -Su

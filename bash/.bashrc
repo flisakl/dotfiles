@@ -11,7 +11,18 @@ alias sb="source ~/.bashrc"
 alias yta='yt-dlp -x --audio-quality 0 --audio-format opus'
 
 # play videos with mpv from playlist file
-alias mpvp='mpv --save-position-on-quit --playlist=playlist.txt'
+function mpvp () {
+    VIDEOS_DIR="$(xdg-user-dir VIDEOS)"
+
+    cd ${VIDEOS_DIR}
+    pfile="$(find . -name "playlist.txt" | fzf)"
+
+    if [ -e "${pfile}" ]; then
+        mpv --save-position-on-quit --playlist=${pfile}
+    else
+        echo "Playlist file does not exist."
+    fi
+}
 
 # compile latex document to pdf
 alias lm='latexmk -pdf -pvc -output-directory=output main.tex'

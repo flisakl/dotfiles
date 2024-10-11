@@ -26,7 +26,7 @@ c.tabs.padding = {'top': 8, 'bottom': 8, 'left': 3, 'right': 3}
 c.tabs.favicons.scale = 1.5
 c.tabs.position = "left"
 c.url.searchengines = {"DEFAULT": "https://duckduckgo.com/?q={}"}
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 
 # gruvbox dark hard qutebrowser theme by Florian Bruhin <me@the-compiler.org>
 #

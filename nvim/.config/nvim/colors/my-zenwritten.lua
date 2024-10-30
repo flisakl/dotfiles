@@ -1,4 +1,4 @@
-vim.opt.background = 'light'
+vim.opt.background = 'dark'
 vim.g.colors_name = 'my-zenwritten'
 
 -- First we will need lush, and the colorscheme we wish to modify
@@ -9,8 +9,9 @@ local zenwritten = require('zenwritten')
 local spec = lush.extends({zenwritten}).with(function()
   return {
     -- Use the existing Comment group in zenwritten, but adjust the gui attribute
-    Comment { fg = "#0da308", gui = "italic" },
-    Todo { fg = "#e30510", gui = "italic" },
+    Comment { fg = "#61eb57", gui = "italic" },
+    Todo { fg = "#fa3232", gui = "italic" },
+        -- TODO brighter colors
   }
 end)
 lush(spec)

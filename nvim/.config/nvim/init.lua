@@ -13,23 +13,16 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- LEADER
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-require("lazy").setup("plugins")
-
-
 -- OPTIONS
 local o = vim.o
 
+o.termguicolors = true
 o.scrolloff = 5
 o.wrap = false
 o.lazyredraw = true
 o.number = true
 o.relativenumber = true
 o.cursorline = true
-o.colorcolumn = '81'
 o.laststatus = 3
 o.splitbelow = true
 o.splitright = true
@@ -39,6 +32,13 @@ o.tabstop = 4
 o.shiftwidth = 4
 o.expandtab = true
 o.smartindent = true
+
+-- LEADER
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- PLUGINS
+require("lazy").setup("plugins")
 
 -- KEYBINDS
 vim.keymap.set('n', '<Tab>', ':bn<cr>', {})

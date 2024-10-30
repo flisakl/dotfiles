@@ -10,8 +10,8 @@
 @define-color brightYellow #E6C384;
 @define-color brightBlue #7FB4CA;
 @define-color brightAqua #7AA89F;
-@define-color foreground #DCD7BA;
-@define-color background #16161D;
+@define-color foreground #191919;
+@define-color background #f0edec;
 
 window#waybar {
     background-color: @background;
@@ -24,10 +24,9 @@ window#waybar {
 
 #workspaces button { padding: 0; margin: 0 5px; color: @foreground;}
 #workspaces button.focused { color: @brightBlue; }
-#mpd { color: @purple; margin-left: 10px;}
 #pulseaudio, #clock, #battery, #disk, #network { padding: 0 5px; }
 
-#pulseaudio { color: @brightBlue; }
-#disk { color: @brightGreen; }
-#network { color: @brightYellow; }
-#battery { color: @red; }
+/* #pulseaudio { color: @brightBlue; } */
+/* #disk { color: @brightGreen; } */
+/* #network { color: @brightYellow; } */
+/* #battery { color: @red; } */

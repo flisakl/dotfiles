@@ -38,7 +38,7 @@ return {
                 ensure_installed = { 
                     "lua", "vim", "markdown",
                     "html", "javascript", "typescript", "css", "scss", "vue",
-                    "ruby", "python",
+                    "ruby", "python", "comment",
                     "c",
                 },
                 sync_install = false,

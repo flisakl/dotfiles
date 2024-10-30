@@ -30,7 +30,17 @@ return {
             })
 
             -- setup must be called before loading
-            vim.cmd("colorscheme kanagawa")
+            -- vim.cmd("colorscheme kanagawa")
         end
     },
+    {
+        "zenbones-theme/zenbones.nvim",
+        dependencies = "rktjmp/lush.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.g.zenbones_darken_comments = 45
+            vim.cmd.colorscheme('my-zenwritten')
+        end
+    }
 }

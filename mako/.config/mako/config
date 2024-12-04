@@ -1,0 +1,12 @@
+on-button-left=dismiss-all
+font=CaskaydiaCove Nerd Font 12
+background-color=#191919
+border-color=#689d6a
+text-color=#fbf1c7
+padding=20,15
+anchor=top-right
+height=200
+border-size=5
+default-timeout=5000
+format=<span foreground="#8ec07c">%s</span>\n\n<span size="10pt">%b</span>
+# vim: set ft=dosini :

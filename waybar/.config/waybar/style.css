@@ -1,0 +1,26 @@
+@import "/home/flisak/.cache/wal/colors-waybar.css";
+
+window#waybar {
+    background-color: @background;
+    color: @foreground;
+    font-family: "CaskaydiaCove Nerd Font";
+    font-size: 12px;
+}
+
+
+
+#workspaces button { padding: 0; margin: 0 5px; color: @foreground;}
+#workspaces button.focused { color: @color5; }
+
+.modules-right { color: @background; }
+#pulseaudio, #clock, #battery, #disk, #network { padding: 0 5px; }
+
+#battery { background-color: @color1}
+#disk { background-color: @color2}
+#network { background-color: @color3}
+#pulseaudio { background-color: @color4}
+
+/* #pulseaudio { color: @brightBlue; } */
+/* #disk { color: @brightGreen; } */
+/* #network { color: @brightYellow; } */
+/* #battery { color: @red; } */

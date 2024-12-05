@@ -1,0 +1,75 @@
+{
+"modules-left": ["sway/workspaces"],
+"modules-center": ["clock"],
+"modules-right": ["pulseaudio", "network", "disk", "battery"],
+
+"sway/workspaces": {
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+        "persistent": " ",
+        "default": " "
+    },
+    "persistent-workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": [],
+        "10": []
+    }
+},
+
+"mpd": {
+    "format": "{stateIcon} {artist} - {title}",
+    "unknown-tag": "",
+    "state-icons": {
+        "paused": "",
+        "playing": ""
+    }
+},
+
+"clock": {
+    "format": " {:%A, %d %B %H:%M}",
+},
+
+"pulseaudio": {
+    "max-volume": 150,
+    "format": "{icon} {volume}%",
+    "format-bluetooth": " {volume}%",
+    "format-muted": " ",
+    "format-icons": [
+        "",
+        "",
+        " ",
+    ]
+},
+
+"network": {
+    "format-disconnected": "󰌙 ",
+    "format-ethernet": " ",
+    "format-wifi": "  {essid} {signalStrength}%",
+},
+
+"disk": {
+    "format": "  {free}",
+    "path": "/home"
+},
+
+"battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": [
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+    ]
+},
+
+}
+# vim: set ft=json :

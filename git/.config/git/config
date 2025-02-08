@@ -1,0 +1,10 @@
+[include]
+    path = user.ini
+[init]
+	defaultBranch = master
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[merge]
+	conflictstyle = diff3

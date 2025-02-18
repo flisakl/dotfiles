@@ -1,6 +1,7 @@
 include "~/.config/sway/colors"
 
 ### Autostart
+exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec swayidle
 exec mako
 exec pipewire
@@ -18,7 +19,7 @@ set $menu bemenu-run $opts -p "Choose application:"
 set $big_monitor HDMI-A-1
 set $laptop_monitor eDP-1
 
-default_border pixel 5
+default_border pixel 3
 gaps inner 10
 smart_borders on
 smart_gaps on
@@ -185,6 +186,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 assign [app_id="Firefox"] workspace $ws2
 assign [app_id="org.qutebrowser.qutebrowser"] workspace $ws2
+for_window [app_id="org.qbittorrent.qBittorrent"] floating enable
 #assign [app_id="org.pwmt.zathura"] workspace $ws1
 
 #

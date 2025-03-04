@@ -6,7 +6,5 @@ text-color=#ECE1D7
 padding=20,15
 anchor=top-right
 height=200
-border-size=5
+border-size=3
 default-timeout=0
-format=<span foreground="#EBC06D">%s</span>\n\n<span size="10pt">%b</span>
-# vim: set ft=dosini :

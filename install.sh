@@ -26,7 +26,7 @@ web_browsers='qutebrowser qt5-wayland qt6-wayland firefox python3-adblock'
 system='xorg xorg-server-xwayland xdg-user-dirs connman cronie pipewire libjack-pipewire pamixer pavucontrol brightnessctl mako wireplumber wl-clipboard bemenu'
 terminals='foot'
 tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot stow ffmpeg socklog-void tree-sitter-devel'
-misc='zathura zathura-pdf-mupdf mpv mpc mpd ncmpcpp yt-dlp pywal'
+misc='zathura zathura-pdf-mupdf mpv mpc mpd ncmpcpp yt-dlp pywal xdg-desktop-portal xdg-desktop-portal-wlr'
 window_managers='polkit sway elogind swaybg swaylock swayidle Waybar'
 development='base-devel neovim docker docker-compose docker-buildx openssh gnupg pandoc git'
 
@@ -47,17 +47,31 @@ if [ "${DOWNLOAD_NERD_FONTS}" = 1 ]; then
     cd ${here}
 fi
 
+function disable_service {
+    path="/var/service/${1}"
+    if [ -e "${path}" ]; then
+	sudo rm ${path}
+    fi
+}
+
+function enable_service {
+    path="/etc/sv/${1}"
+    if [ -e "${path}" ]; then
+	sudo ln -s ${path} /var/service
+    fi
+}
+
 if [ "${START_SERVICES}" = 1 ]; then
     # I'm assuming it's fresh installation and you're using connman to manage your internet connection
     # because of that any other program managing network must be disabled
-    sudo rm /var/service/dhcpcd
-    sudo rm /var/service/wpa_supplicant
-    sudo ln -s /etc/sv/connmand /var/service
-    sudo ln -s /etc/sv/docker /var/service
-    sudo ln -s /etc/sv/cronie /var/service
-    sudo ln -s /etc/sv/dbus /var/service
-    sudo ln -s /etc/sv/socklog-unix /var/service
-    sudo ln -s /etc/sv/nanoklogd /var/service
+    disable_service dhcpcd
+    disable_service wpa_supplicant
+    enable_service connmand
+    enable_service docker
+    enable_service cronie
+    enable_service dbus
+    enable_service socklog-unix
+    enable_service nanoklogd
 fi
 
 if [ "${CONFIGURE_GROUPS}" = 1 ]; then
@@ -83,7 +97,7 @@ if [ "${COPY_DOTFILES}" = 1 ]; then
     stow -t ~ $(ls -d */)
 fi
 
-if [ "${CREATE_XDG_USER_DIRS" = 1 ]; then
+if [ "${CREATE_XDG_USER_DIRS}" = 1 ]; then
     cd ~
     awk '{ match($0, /HOME\/([A-Za-z\/]+)/, groups); if (groups[1] != "") print groups[1] }' ~/.config/user-dirs.dirs | xargs mkdir -p
 fi

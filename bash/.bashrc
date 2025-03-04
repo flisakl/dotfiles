@@ -30,6 +30,7 @@ alias lm='latexmk -pdf -pvc -output-directory=output main.tex'
 # Void Linux specific aliases
 alias reboot='loginctl reboot'
 alias poweroff='loginctl poweroff'
+alias purge='sudo vkpurge rm all'
 
 # Git related aliases
 alias gs='git status'

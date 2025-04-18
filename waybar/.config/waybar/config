@@ -1,63 +1,75 @@
 {
-"modules-left": ["sway/workspaces"],
-"modules-center": ["clock"],
-"modules-right": ["pulseaudio", "network", "disk", "battery"],
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "backlight", "network", "disk", "battery"],
+    "margin": "5 5 0 5",
 
-"sway/workspaces": {
-    "all-outputs": true,
-    "format": "{index}",
-    "format-icons": {
-        "persistent": " ",
-        "default": " "
+    "sway/workspaces": {
+        "all-outputs": true,
+        "format": "{index}",
+        "format-icons": {
+            "persistent": " ",
+            "default": " "
+        },
     },
-},
 
-"mpd": {
-    "format": "{stateIcon} {artist} - {title}",
-    "unknown-tag": "",
-    "state-icons": {
-        "paused": "",
-        "playing": ""
+    "mpd": {
+        "format": "{stateIcon} {artist} - {title}",
+        "unknown-tag": "",
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        }
+    },
+
+    "clock": {
+        "format": " {:%A, %d %B %H:%M}",
+    },
+
+    "pulseaudio": {
+        "max-volume": 150,
+        "format": "{icon} {volume}%",
+        "format-bluetooth": " {volume}%",
+        "format-muted": " ",
+        "format-icons": [
+            "",
+            "",
+            " ",
+        ]
+    },
+
+    "network": {
+        "format-disconnected": "󰌙 ",
+        "format-ethernet": " ",
+        "format-wifi": "  {essid} {signalStrength}%",
+    },
+
+    "disk": {
+        "format": "  {free}",
+        "path": "/home"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+        ]
+    },
+
+    "backlight": {
+        "interval": 5,
+        "format": "{icon} {percent}%",
+        "scroll-step": 5.0,
+        "format-icons": [
+            "󰃞 ",
+            "󰃝 ",
+            "󰃟 ",
+            "󰃠 "
+        ]
     }
-},
-
-"clock": {
-    "format": " {:%A, %d %B %H:%M}",
-},
-
-"pulseaudio": {
-    "max-volume": 150,
-    "format": "{icon} {volume}%",
-    "format-bluetooth": " {volume}%",
-    "format-muted": " ",
-    "format-icons": [
-        "",
-        "",
-        " ",
-    ]
-},
-
-"network": {
-    "format-disconnected": "󰌙 ",
-    "format-ethernet": " ",
-    "format-wifi": "  {essid} {signalStrength}%",
-},
-
-"disk": {
-    "format": "  {free}",
-    "path": "/home"
-},
-
-"battery": {
-    "format": "{icon} {capacity}%",
-    "format-icons": [
-        " ",
-        " ",
-        " ",
-        " ",
-        " ",
-    ]
-},
-
 }
-# vim: set ft=json :
+# vim: set ft=json:

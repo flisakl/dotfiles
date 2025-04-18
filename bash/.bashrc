@@ -77,6 +77,9 @@ export PATH="${PATH}:${HOME}/.scripts/"
 export GPG_TTY=$(tty)
 export EDITOR='nvim'
 
+# Apply pywal colors to terminal
+# (cat ~/.cache/wal/sequences &)
+
 # Start sway session
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
   exec dbus-run-session sway

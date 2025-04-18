@@ -1,4 +1,4 @@
-include "~/.config/sway/colors"
+include "~/.cache/wal/colors-sway"
 
 ### Autostart
 exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
@@ -13,8 +13,7 @@ set $up k
 set $right l
 
 set $term foot
-set $opts -c -i -B 4 -W 0.3 --fn 'CaskaydiaCove Nerd Font 13' --bdr "$bright_red" --nb '$bg' --ab '$bg' --hf "$bg" --hb '$yellow' -l 15 -s --fixed-height --tb "$bg" --tf "$bright_green" --fb "$bg" --ff "$fg"
-set $menu bemenu-run $opts -p "Choose application:"
+set $menu wofi --show=run
 
 set $big_monitor HDMI-A-1
 set $laptop_monitor eDP-1
@@ -22,20 +21,19 @@ set $laptop_monitor eDP-1
 default_border pixel 3
 gaps inner 10
 smart_borders on
-smart_gaps on
+smart_gaps off
 floating_modifier $mod normal
 
 
 set $transparent #00000000
-set $wallpaper ~/.config/wallpaper.png
-client.focused $bright_red $transparent $bg $green $bright_red
+client.focused $color4 $transparent $background $color1 $color4
 client.focused_inactive $transparent $transparent $transparent $transparent $transparent
 client.unfocused $transparent $transparent $transparent $transparent $transparent
 
 ### Output configuration
 output "*" bg $wallpaper fill
-output $laptop_monitor resolution 1366x768 position 0,0
-output $big_monitor resolution 1440x900 position 1440,0
+output $laptop_monitor resolution 1366x768 position 1440,0
+output $big_monitor resolution 1440x900 position 0,0
 
 ### Input configuration
 input "*" {
@@ -56,7 +54,8 @@ bindsym Print exec grimshot --notify save area
 bindsym $mod+period input type:keyboard xkb_switch_layout next
 
 # Change wallpaper
-bindsym $mod+w exec wal --iterative -qi $(xdg-user-dir WALLPAPERS)
+bindsym $mod+w exec wal --iterative -qi "$(xdg-user-dir WALLPAPERS)/$(head -n 1 ~/.cache/colorscheme)"
+bindsym $mod+Shift+w exec ~/.scripts/colorscheme.sh
 
 # Start a terminal
 bindsym $mod+Return exec $term
@@ -149,16 +148,16 @@ set $ws10 10
 
 
 # Assigning workspaces to outputs
-workspace $ws1 output $laptop_monitor
-workspace $ws2 output $big_monitor
-workspace $ws3 output $big_monitor
-workspace $ws4 output $big_monitor
-workspace $ws5 output $big_monitor
-workspace $ws6 output $big_monitor
-workspace $ws7 output $big_monitor
-workspace $ws8 output $big_monitor
-workspace $ws9 output $big_monitor
-workspace $ws10 output $big_monitor
+workspace $ws1 output $big_monitor
+workspace $ws2 output $laptop_monitor
+workspace $ws3 output $laptop_monitor
+workspace $ws4 output $laptop_monitor
+workspace $ws5 output $laptop_monitor
+workspace $ws6 output $laptop_monitor
+workspace $ws7 output $laptop_monitor
+workspace $ws8 output $laptop_monitor
+workspace $ws9 output $laptop_monitor
+workspace $ws10 output $laptop_monitor
 
 # Switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -184,8 +183,8 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-assign [app_id="Firefox"] workspace $ws2
-assign [app_id="org.qutebrowser.qutebrowser"] workspace $ws2
+assign [app_id="Firefox"] workspace $ws1
+assign [app_id="org.qutebrowser.qutebrowser"] workspace $ws1
 for_window [instance="Godot_*"] floating enable
 for_window [instance="org.qbittorrent.qBittorrent"] floating enable
 #assign [app_id="org.pwmt.zathura"] workspace $ws1

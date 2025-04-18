@@ -1,52 +1,44 @@
-@define-color background #292522;
-@define-color foreground #ECE1D7;
-
-@define-color black1 #867462;
-@define-color black2 #34302C;
-@define-color black3 #292522;
-
-@define-color blue1 #A3A9CE;
-@define-color blue2 #7F91B2;
-@define-color blue3 #273142;
-
-@define-color cyan1 #89B3B6;
-@define-color cyan2 #7B9695;
-@define-color cyan3 #253333;
-
-@define-color green1 #85B695;
-@define-color green2 #78997A;
-@define-color green3 #233524;
-
-@define-color magenta1 #CF9BC2;
-@define-color magenta2 #B380B0;
-@define-color magenta3 #422741;
-
-@define-color red1 #D47766;
-@define-color red2 #BD8183;
-@define-color red3 #7D2A2F;
-
-@define-color white1 #ECE1D7;
-@define-color white2 #C1A78E;
-@define-color white3 #403A36;
-
-@define-color yellow1 #EBC06D;
-@define-color yellow2 #E49B5D;
-@define-color yellow3 #8B7449;
+@import url('file:///home/flisak/.cache/wal/colors-waybar.css');
 
 window#waybar {
-    background-color: @background;
+    background-color: transparent;
     color: @foreground;
     font-family: "CaskaydiaCove Nerd Font";
     font-size: 12px;
 }
 
-#workspaces button { padding: 0 8px; margin: 0; color: @foreground; border-radius: 0; font-weight: bold;}
-#workspaces button.focused { background-color: @green2; color: @background}
+.modules-left, .modules-center {
+    background: @background;
+}
 
-.modules-right { color: @background; }
-#pulseaudio, #clock, #battery, #disk, #network { padding: 0 5px; }
+#workspaces button {
+    padding: 0 8px;
+    margin: 0;
+    color: @foreground;
+    border-radius: 0;
+    font-weight: bold;
+}
+#workspaces button.focused { 
+    background-color: @color3;
+}
 
-#battery { background-color: @red2;}
-#disk { background-color: @red1;}
-#network { background-color: @yellow2;}
-#pulseaudio { background-color: @yellow1;}
+#backlight, #pulseaudio, #clock, #battery, #disk, #network {
+    padding: 0 8px;
+    margin: 0 5px;
+    background: @color3;
+    color: @background;
+    border: 1px solid @background;
+}
+
+#backlight, #disk {
+    color: @foreground;
+    background: @background;
+}
+
+
+#clock {
+    margin: 0;
+    background: @background;
+    color: @foreground;
+    border: 1px double @foreground;
+}

@@ -50,14 +50,14 @@ fi
 function disable_service {
     path="/var/service/${1}"
     if [ -e "${path}" ]; then
-	sudo rm ${path}
+        sudo rm ${path}
     fi
 }
 
 function enable_service {
     path="/etc/sv/${1}"
     if [ -e "${path}" ]; then
-	sudo ln -s ${path} /var/service
+        sudo ln -s ${path} /var/service
     fi
 }
 
@@ -85,14 +85,14 @@ if [ "${CONFIGURE_PIPEWIRE}" = 1 ]; then
 fi
 
 if [ "${CONFIGURE_BITMAP_FONTS}" = 1 ]; then
-    sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
+    sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps-except-emoji.conf /etc/fonts/conf.d/
     sudo xbps-reconfigure -f fontconfig
 fi
 
 if [ "${COPY_DOTFILES}" = 1 ]; then
     # Copy dotfiles files
     rm ~/.bash*
-    rm ~/.config
+    rm ~/.config -r
     cd $here
     stow -t ~ $(ls -d */)
 fi

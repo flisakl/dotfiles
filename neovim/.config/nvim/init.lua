@@ -55,5 +55,5 @@ vim.keymap.set('n', '<right>', ':vertical resize +2<cr>', {})
 vim.keymap.set('n', '<down>', ':resize -2<cr>', {})
 vim.keymap.set('n', '<up>', ':resize +2<cr>', {})
 
-vim.cmd.colorscheme("melange")
+vim.cmd.colorscheme("everforest")
 vim.diagnostic.config({ virtual_text = true })

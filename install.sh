@@ -23,7 +23,7 @@ here="$(pwd)"
 
 # List of packages to install
 web_browsers='qutebrowser qt5-wayland qt6-wayland firefox python3-adblock'
-system='xorg xorg-server-xwayland xdg-user-dirs connman cronie pipewire libjack-pipewire pamixer pavucontrol brightnessctl mako wireplumber wl-clipboard bemenu'
+system='xorg xorg-server-xwayland xdg-user-dirs connman cronie pipewire libjack-pipewire pamixer pavucontrol brightnessctl mako wireplumber wl-clipboard wofi'
 terminals='foot'
 tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot stow ffmpeg socklog-void tree-sitter-devel'
 misc='zathura zathura-pdf-mupdf mpv mpc mpd ncmpcpp yt-dlp pywal xdg-desktop-portal xdg-desktop-portal-wlr'

@@ -1,4 +1,5 @@
 {
+    "ipc": true,
     "modules-left": ["sway/workspaces", "mpd"],
     "modules-right": ["sway/language", "pulseaudio", "backlight", "network", "disk", "battery", "clock"],
     "margin": "5 5 0 5",

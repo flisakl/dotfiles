@@ -5,6 +5,7 @@ exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY 
 exec swayidle
 exec mako
 exec pipewire
+exec mpd
 
 set $mod Mod4
 set $left h
@@ -50,9 +51,6 @@ input "*" {
 # Take screenshot
 bindsym Print exec grimshot --notify save area
 
-# Switch keyboard layout
-bindsym $mod+period input type:keyboard xkb_switch_layout next
-
 # Change wallpaper
 bindsym $mod+w exec wal --iterative -qi "$(xdg-user-dir WALLPAPERS)/$(head -n 1 ~/.cache/colorscheme)"
 bindsym $mod+Shift+w exec ~/.scripts/colorscheme.sh
@@ -63,7 +61,7 @@ bindsym $mod+Return exec $term
 # Kill focused window
 bindsym $mod+q kill
 
-# Start your launcher
+# Start app launcher
 bindsym $mod+p exec $menu
 
 # Reload the configuration file
@@ -183,8 +181,8 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-assign [app_id="Firefox"] workspace $ws1
-assign [app_id="org.qutebrowser.qutebrowser"] workspace $ws1
+assign [app_id="Firefox"] workspace $ws2
+assign [app_id="org.qutebrowser.qutebrowser"] workspace $ws2
 for_window [instance="Godot_*"] floating enable
 for_window [instance="org.qbittorrent.qBittorrent"] floating enable
 #assign [app_id="org.pwmt.zathura"] workspace $ws1

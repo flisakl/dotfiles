@@ -1,7 +1,6 @@
 {
-    "modules-left": ["sway/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "backlight", "network", "disk", "battery"],
+    "modules-left": ["sway/workspaces", "mpd"],
+    "modules-right": ["sway/language", "pulseaudio", "backlight", "network", "disk", "battery", "clock"],
     "margin": "5 5 0 5",
 
     "sway/workspaces": {
@@ -14,12 +13,21 @@
     },
 
     "mpd": {
-        "format": "{stateIcon} {artist} - {title}",
-        "unknown-tag": "",
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        }
+        "format": "   {title}",
+        "format-paused": "   {title}",
+        "format-stopped": "  ",
+        "tooltip-format": "{album} by {artist}",
+        "on-click": "mpc toggle"
+    },
+
+    "sway/language": {
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+        "tooltip-format": "Click to switch to another layout.",
+        "format": "  {long}",
+        "format-icons": {
+            "persistent": " ",
+            "default": " "
+        },
     },
 
     "clock": {

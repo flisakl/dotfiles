@@ -8,13 +8,21 @@ window#waybar {
 }
 
 .modules-left, .modules-center {
-    background: @background;
+    background: transparent;
+}
+
+#mpd {
+    margin-left: 5px;
+    padding: 0 8px;
+    background-color: @color3;
+    color: @background;
 }
 
 #workspaces button {
     padding: 0 8px;
     margin: 0;
     color: @foreground;
+    background: @background;
     border-radius: 0;
     font-weight: bold;
 }
@@ -22,7 +30,7 @@ window#waybar {
     background-color: @color3;
 }
 
-#backlight, #pulseaudio, #clock, #battery, #disk, #network {
+#language, #backlight, #pulseaudio, #clock, #battery, #disk, #network {
     padding: 0 8px;
     margin: 0 5px;
     background: @color3;
@@ -30,7 +38,7 @@ window#waybar {
     border: 1px solid @background;
 }
 
-#backlight, #disk {
+#clock, #language, #backlight, #disk {
     color: @foreground;
     background: @background;
 }

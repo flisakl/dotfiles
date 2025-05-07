@@ -1,0 +1,3 @@
+ncmpcpp_directory = "~/.mpd/ncmpcpp"
+lyrics_directory = "~/.mpd/lyrics"
+mpd_music_dir = "~/media/music"

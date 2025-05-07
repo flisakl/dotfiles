@@ -47,16 +47,14 @@ if [ "${DOWNLOAD_NERD_FONTS}" = 1 ]; then
     cd ${here}
 fi
 
-function disable_service {
+function service {
     path="/var/service/${1}"
-    if [ -e "${path}" ]; then
-        sudo rm ${path}
-    fi
-}
 
-function enable_service {
-    path="/etc/sv/${1}"
-    if [ -e "${path}" ]; then
+    if [ "${2}" = "disable" ]; then
+        if [ -e "${path}" ]; then
+            sudo rm ${path}
+        fi
+    else
         sudo ln -s ${path} /var/service
     fi
 }
@@ -64,14 +62,14 @@ function enable_service {
 if [ "${START_SERVICES}" = 1 ]; then
     # I'm assuming it's fresh installation and you're using connman to manage your internet connection
     # because of that any other program managing network must be disabled
-    disable_service dhcpcd
-    disable_service wpa_supplicant
-    enable_service connmand
-    enable_service docker
-    enable_service cronie
-    enable_service dbus
-    enable_service socklog-unix
-    enable_service nanoklogd
+    service dhcpcd disable
+    service wpa_supplicant disable
+    service connmand enable
+    service docker enable
+    service cronie enable
+    service dbus enable
+    service socklog-unix enable
+    service nanoklogd enable
 fi
 
 if [ "${CONFIGURE_GROUPS}" = 1 ]; then
@@ -92,7 +90,9 @@ fi
 if [ "${COPY_DOTFILES}" = 1 ]; then
     # Copy dotfiles files
     rm ~/.bash*
-    rm ~/.config -r
+    if [ -e "~/.config" ]; then
+        rm ~/.config -r
+    fi
     cd $here
     stow -t ~ $(ls -d */)
 fi

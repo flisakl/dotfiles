@@ -25,7 +25,7 @@ here="$(pwd)"
 web_browsers='qutebrowser qt5-wayland qt6-wayland firefox python3-adblock'
 system='xorg xorg-server-xwayland xdg-user-dirs connman cronie pipewire libjack-pipewire pamixer pavucontrol brightnessctl mako wireplumber wl-clipboard wofi'
 terminals='foot'
-tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot stow ffmpeg socklog-void tree-sitter-devel'
+tools='fzf ripgrep lf imv tree zip unzip tmux python3-tmuxp curl wget htop grimshot stow ffmpeg socklog-void tree-sitter-devel pinentry-qt'
 misc='zathura zathura-pdf-mupdf mpv mpc mpd ncmpcpp yt-dlp pywal xdg-desktop-portal xdg-desktop-portal-wlr'
 window_managers='polkit sway elogind swaybg swaylock swayidle Waybar'
 development='base-devel neovim docker docker-compose docker-buildx openssh gnupg pandoc git'
@@ -55,7 +55,7 @@ function service {
             sudo rm ${path}
         fi
     else
-        sudo ln -s ${path} /var/service
+        sudo ln -s /etc/sv/${1} /var/service/
     fi
 }
 

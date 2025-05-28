@@ -6,6 +6,7 @@ exec swayidle
 exec mako
 exec pipewire
 exec mpd
+exec_always wal --iterative -qstei "$(xdg-user-dir WALLPAPERS)/$(head -n 1 ~/.cache/colorscheme)"
 
 set $mod Mod4
 set $left h

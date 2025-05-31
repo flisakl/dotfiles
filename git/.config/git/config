@@ -8,7 +8,3 @@
 	gpgsign = true
 [merge]
 	conflictstyle = diff3
-[user]
-	email = lu.dev00@gmail.com
-	name = Łukasz Flisak
-	signingkey = 4FCCF31BD3350781

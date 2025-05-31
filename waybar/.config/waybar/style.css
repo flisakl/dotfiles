@@ -1,4 +1,4 @@
-@import url('file:///home/flisak/.cache/wal/colors-waybar.css');
+@import url('./pywal.css');
 
 window#waybar {
     background-color: transparent;

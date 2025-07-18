@@ -1,8 +1,8 @@
 {
     "ipc": true,
-    "modules-left": ["sway/workspaces", "mpd"],
-    "modules-right": ["sway/language", "pulseaudio", "backlight", "network", "disk", "battery", "clock"],
-    "margin": "5 5 0 5",
+    "modules-left": ["sway/workspaces", "sway/language"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "network", "battery"],
 
     "sway/workspaces": {
         "all-outputs": true,
@@ -48,8 +48,8 @@
     },
 
     "network": {
-        "format-disconnected": "󰌙 ",
-        "format-ethernet": " ",
+        "format-disconnected": "disconnected",
+        "format-ethernet": "eth",
         "format-wifi": "  {essid} {signalStrength}%",
     },
 

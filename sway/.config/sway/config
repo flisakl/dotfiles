@@ -1,4 +1,4 @@
-include "~/.cache/wal/colors-sway"
+include "./current.conf"
 
 ### Autostart
 exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
@@ -6,7 +6,6 @@ exec swayidle
 exec mako
 exec pipewire
 exec mpd
-exec_always wal --iterative -qstei "$(xdg-user-dir WALLPAPERS)/$(head -n 1 ~/.cache/colorscheme)"
 
 set $mod Mod4
 set $left h
@@ -15,7 +14,7 @@ set $up k
 set $right l
 
 set $term foot
-set $menu wofi --show=run
+set $menu wofi --show=drun
 
 set $big_monitor HDMI-A-1
 set $laptop_monitor eDP-1
@@ -27,13 +26,13 @@ smart_gaps off
 floating_modifier $mod normal
 
 
-set $transparent #00000000
-client.focused $color4 $transparent $background $color1 $color4
-client.focused_inactive $transparent $transparent $transparent $transparent $transparent
-client.unfocused $transparent $transparent $transparent $transparent $transparent
+# border background text indicator child_border
+client.focused $blue $blue $crust $red $blue
+client.focused_inactive $base $base $text $base $base
+client.unfocused $base $base $text $base $base
 
 ### Output configuration
-output "*" bg $wallpaper fill
+output "*" bg ~/media/wallpapers/current.png fill
 output $laptop_monitor resolution 1366x768 position 1440,0
 output $big_monitor resolution 1440x900 position 0,0
 
@@ -191,6 +190,9 @@ for_window [instance="org.qbittorrent.qBittorrent"] floating enable
 #
 # Layout stuff:
 #
+
+# Change between tiling and tabbed layout
+bindsym $mod+t layout toggle tabbed split
 
 # Change split direction
 bindsym $mod+e split toggle

@@ -1,18 +1,32 @@
 #!/bin/sh
 
-SCHEME_FILE="${HOME}/.cache/colorscheme"
+# Theme is changed by making a symbolic link for one of available colorschemes
+# Theme is applied to:
+# - foot
+# - tmux
+# - mako
+# - waybar
+# - sway
 
-if [ -e "${SCHEME_FILE}" ]; then
-    current=$(cat ${SCHEME_FILE})
-else
-    current="kanagawa"
-fi
+# Each app on the list above has "themes" folder
 
-cd $(xdg-user-dir WALLPAPERS)
-choice=$(ls -1d * | wofi -d)
+# Currently available themes are:
+# - catppuccin-mocha
 
-if [ -n "${choice}" ]; then
-    echo "${choice}" > ${SCHEME_FILE}
-    wal --iterative -qi "$(xdg-user-dir WALLPAPERS)/$(head -n 1 $SCHEME_FILE)"
-    sed -i "s/${current}/${choice}/" ~/.config/nvim/init.lua ~/.config/foot/foot.ini
+apply_colorscheme () {
+  # First parameter is a config directory
+  # Second is the theme name
+  # Third is the extension
+  cd ${1}
+  ln -sf themes/${2}.${3} current.${3}
+}
+themes="catppuccin-mocha\n"
+theme=$(echo $themes | fzf)
+
+if [ -n $theme ]; then
+  apply_colorscheme ~/.config/tmux $theme conf
+  apply_colorscheme ~/.config/mako $theme conf
+  apply_colorscheme ~/.config/sway $theme conf
+  apply_colorscheme ~/.config/foot $theme ini
+  apply_colorscheme ~/.config/waybar $theme css
 fi

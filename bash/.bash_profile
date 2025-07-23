@@ -5,7 +5,8 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # NVM and Latex will be available inside tmux session
-export NVM_DIR="$HOME/.nvm"
-export PATH="${PATH}:/usr/local/texlive/2024/bin/x86_64-linux/:${HOME}/.local/bin/"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PNPM_HOME="/home/flisak/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac

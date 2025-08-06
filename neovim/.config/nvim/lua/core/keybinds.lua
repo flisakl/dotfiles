@@ -32,3 +32,8 @@ vim.keymap.set('n', '<leader>sca', ':Lspsaga code_action<cr>', {})
 vim.keymap.set('n', '<leader>sic', ':Lspsaga incoming_calls<cr>', {})
 vim.keymap.set('n', '<leader>soc', ':Lspsaga outgoing_calls<cr>', {})
 
+-- LSP
+vim.keymap.set('n', 'gca', vim.lsp.buf.code_action, {})
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
+vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, {})
+vim.keymap.set('n', 'gd', vim.lsp.buf.type_definition, {})

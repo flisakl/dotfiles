@@ -2,3 +2,5 @@
 user.ini
 current.*
 lazy-lock.json
+__pycache__/
+theme.py

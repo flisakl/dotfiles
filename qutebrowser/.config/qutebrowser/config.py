@@ -21,7 +21,8 @@ c
 c.scrolling.bar = "always"
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
-    "dj": "https://docs.djangoproject.com/en/dev/search/?q={}"
+    "dj": "https://docs.djangoproject.com/en/dev/search/?q={}",
+    "yt": "https://www.youtube.com/results?search_query={}"
 }
 
 

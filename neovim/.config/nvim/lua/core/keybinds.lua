@@ -37,3 +37,9 @@ vim.keymap.set('n', 'gca', vim.lsp.buf.code_action, {})
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
 vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, {})
 vim.keymap.set('n', 'gd', vim.lsp.buf.type_definition, {})
+
+-- Gitsigns
+vim.keymap.set('n', 'shs', ':Gitsigns stage_hunk<cr>', {})
+vim.keymap.set('n', 'shr', ':Gitsigns reset_hunk<cr>', {})
+vim.keymap.set('n', 'shp', ':Gitsigns preview_hunk<cr>', {})
+vim.keymap.set('n', 'shn', ':Gitsigns nav_hunk next<cr>', {})

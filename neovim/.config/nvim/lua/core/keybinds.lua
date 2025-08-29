@@ -4,9 +4,10 @@ vim.keymap.set('n', '<S-Tab>', ':bp<cr>', {})
 
 -- close buffer
 vim.keymap.set('n', '<leader>d', ':bd<cr>', {})
-vim.keymap.set('n', '<left>', ':vertical resize -2<cr>', {})
+vim.keymap.set('n', '<leader>qq', ':%bd<cr>', {})
 
 -- resize splits
+vim.keymap.set('n', '<left>', ':vertical resize -2<cr>', {})
 vim.keymap.set('n', '<right>', ':vertical resize +2<cr>', {})
 vim.keymap.set('n', '<down>', ':resize -2<cr>', {})
 vim.keymap.set('n', '<up>', ':resize +2<cr>', {})

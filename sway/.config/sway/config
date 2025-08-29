@@ -182,10 +182,10 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # assign [app_id="Firefox"] workspace $ws2
-# assign [app_id="org.qutebrowser.qutebrowser"] workspace $ws2
+assign [app_id="org.qutebrowser.qutebrowser"] workspace $ws1
+assign [app_id="org.pwmt.zathura"] workspace $ws1
 for_window [instance="Godot_*"] floating enable
 for_window [instance="org.qbittorrent.qBittorrent"] floating enable
-#assign [app_id="org.pwmt.zathura"] workspace $ws1
 
 #
 # Layout stuff:

@@ -1,21 +1,22 @@
 #!/bin/bash
 
 # NOTE: This installation script is for Void Linux only, if you wish to use
-# it you have to change the script, things like:
+# it you have to change the script, especially things like:
 # - package names and package manager used
 # - how system services are activated
-# - remove some sections (ie pipewire or bitmap fonts sections are not 
+# - remove some sections (ie. pipewire or bitmap fonts sections are not 
 #   necessary on systems like Arch Linux)
 
-COPY_DOTFILES=1
-INSTALL_PACKAGES=1
-INSTALL_NVM=1
-DOWNLOAD_NERD_FONTS=1
-START_SERVICES=1
+CONFIGURE_BITMAP_FONTS=1
 CONFIGURE_GROUPS=1
 CONFIGURE_PIPEWIRE=1
-CONFIGURE_BITMAP_FONTS=1
+COPY_DOTFILES=1
 CREATE_XDG_USER_DIRS=1
+DOWNLOAD_NERD_FONTS=1
+INSTALL_PACKAGES=1
+INSTALL_PNPM=1
+START_SERVICES=1
+SETUP_AUTOLOGIN=1
 
 ################################################################################
 
@@ -35,14 +36,14 @@ if [ "${INSTALL_PACKAGES}" = 1 ]; then
     sudo xbps-install ${web_browsers} ${misc} ${window_managers} ${terminals} ${system} ${tools} ${development}
 fi
 
-if [ "${INSTALL_NVM}" = 1 ]; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+if [ "${INSTALL_PNPM}" = 1 ]; then
+    curl -fsSL https://get.pnpm.io/install.sh | sh -
 fi
 
 if [ "${DOWNLOAD_NERD_FONTS}" = 1 ]; then
-    mkdir ~/.local/share/fonts -p
-    cd ~/.local/share/fonts
-    wget -O fonts.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip
+    mkdir ~/.local/share/fonts/CaskaydiaMono -p
+    cd ~/.local/share/fonts/CaskaydiaMono/
+    wget -O fonts.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CascadiaMono.zip
     unzip fonts.zip && rm fonts.zip
     cd ${here}
 fi
@@ -100,4 +101,11 @@ fi
 if [ "${CREATE_XDG_USER_DIRS}" = 1 ]; then
     cd ~
     awk '{ match($0, /HOME\/([A-Za-z\/]+)/, groups); if (groups[1] != "") print groups[1] }' ~/.config/user-dirs.dirs | xargs mkdir -p
+fi
+
+if [ "${SETUP_AUTOLOGIN}" = 1 ]; then
+  sudo cp -r /etc/sv/agetty-tty1 /etc/sv/agetty-autologin-tty1
+  sudo sed -i "s/--noclear/--noclear --autologin ${USER}" /etc/sv/agetty-autologin-tty1/conf
+  service agetty-tty1 disable
+  service agetty-autologin-tty1tty1 enable
 fi

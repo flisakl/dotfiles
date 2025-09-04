@@ -23,7 +23,6 @@ c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
     "dj": "https://docs.djangoproject.com/en/dev/search/?q={}",
     "yt": "https://www.youtube.com/results?search_query={}",
-    "br": "https://wikibr.pl/index.php?search={}",
     "aa": "https://annas-archive.org/search?&ext=epub&q={}"
 }
 

@@ -4,3 +4,5 @@ current.*
 lazy-lock.json
 __pycache__/
 theme.py
+bookmarks/
+qsettings/

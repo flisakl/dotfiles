@@ -21,4 +21,14 @@ require("lazy").setup({
     { import = "plugins" },
   },
 })
-vim.api.nvim_create_autocmd("VimEnter", { callback = function() require "lazy".update() end })
+
+function daily_update()
+  temp_file_path = "/tmp/lazy-launched"
+  if not vim.uv.fs_stat(temp_file_path) then
+    require("lazy").update()
+    local file = io.open(temp_file_path, "w")
+    file:close()
+  end
+end
+
+vim.api.nvim_create_autocmd("VimEnter", { callback = daily_update })

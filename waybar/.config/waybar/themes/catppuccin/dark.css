@@ -27,7 +27,7 @@
 
 
 window#waybar {
-    background-color: @base;
+    background: transparent;
     color: @text;
     font-family: "CaskaydiaMono Nerd Font";
     font-size: 11px;
@@ -36,29 +36,26 @@ window#waybar {
 #workspaces button {
     padding: 0 5px;
     margin: 0;
-    color: @text;
     font-weight: bold;
     border-radius: 2px;
 }
-#workspaces button.focused { background-color: @lavender; color: @crust }
+#workspaces button.focused { background-color: @subtext0; color: @base }
+#workspaces button.persistent { color: @overlay1; }
 
 .modules-left,
 .modules-right {
   margin: 5px 0;
 }
 
-#language, #backlight, #pulseaudio, #clock, #battery, #disk, #network {
+#workspaces, #language, #backlight, #pulseaudio, #clock, #battery, #disk, #network {
     padding: 0 8px;
     margin: 0 3px;
     color: @text;
     border-radius: 2px;
+    background: @text;
+    color: @base;
 }
 
-#battery { color: @crust; background: @green; }
-#pulseaudio { color: @crust; background: @pink; }
-#network { color: @crust; background: @peach; }
-#disk { border-color: @lavender; }
-
-#clock {
-    margin-right: 5px;
+#workspaces {
+  padding: 0;
 }

@@ -107,5 +107,5 @@ if [ "${SETUP_AUTOLOGIN}" = 1 ]; then
   sudo cp -r /etc/sv/agetty-tty1 /etc/sv/agetty-autologin-tty1
   sudo sed -i "s/--noclear/--noclear --autologin ${USER}" /etc/sv/agetty-autologin-tty1/conf
   service agetty-tty1 disable
-  service agetty-autologin-tty1tty1 enable
+  service agetty-autologin-tty1 enable
 fi

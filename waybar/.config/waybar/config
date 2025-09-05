@@ -1,8 +1,7 @@
 {
     "ipc": true,
     "modules-left": ["sway/workspaces", ],
-    "modules-center": ["clock"],
-    "modules-right": ["sway/language", "pulseaudio", "network", "battery"],
+    "modules-right": ["sway/language", "pulseaudio", "network", "battery", "clock"],
     "margin": "5 0",
 
     "sway/workspaces": {

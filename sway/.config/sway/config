@@ -6,6 +6,7 @@ exec swayidle
 exec mako
 exec pipewire
 exec mpd
+exec ~/.scripts/wallpaper.sh
 
 set $mod Mod4
 set $left h
@@ -52,7 +53,6 @@ input "*" {
 bindsym Print exec grimshot --notify save area
 
 # Change wallpaper
-bindsym $mod+w exec wal --iterative -qi "$(xdg-user-dir WALLPAPERS)/$(head -n 1 ~/.cache/colorscheme)"
 bindsym $mod+Shift+w exec ~/.scripts/colorscheme.sh
 
 # Start a terminal

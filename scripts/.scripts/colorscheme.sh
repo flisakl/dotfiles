@@ -1,32 +1,38 @@
 #!/bin/sh
 
-# Theme is changed by making a symbolic link for one of available colorschemes
-# Theme is applied to:
-# - foot
-# - tmux
-# - mako
-# - waybar
-# - sway
-
-# Each app on the list above has "themes" folder
-
-# Currently available themes are:
-# - catppuccin-mocha
-
 apply_colorscheme () {
-  # First parameter is a config directory
-  # Second is the theme name
-  # Third is the extension
   cd ${1}
-  ln -sf themes/${2}.${3} current.${3}
+  ln -sf themes/${2}/${3}.${4} current.${4}
 }
-themes="catppuccin-mocha\n"
-theme=$(echo $themes | fzf)
+cd ~/.config/foot/themes
+
+variant_file="${HOME}/.cache/theme_variant"
+theme_file="${HOME}/.cache/theme_name"
+
+if [ -f "${variant_file}" ]; then
+  variant=$(cat ${variant_file})
+else
+  variant="dark"
+  echo "${variant}" > ${variant_file}
+fi
+
+if [ "${1}" = "no" ]; then
+
+  if [ -f "${theme_file}" ]; then
+    theme=$(cat $theme_file)
+  else
+    theme="catppuccin"
+  fi
+
+else
+  theme=$(ls | wofi --show=dmenu -p "Choose theme")
+fi
 
 if [ -n $theme ]; then
-  apply_colorscheme ~/.config/tmux $theme conf
-  apply_colorscheme ~/.config/mako $theme conf
-  apply_colorscheme ~/.config/sway $theme conf
-  apply_colorscheme ~/.config/foot $theme ini
-  apply_colorscheme ~/.config/waybar $theme css
+  echo ${theme} > ${theme_file}
+  apply_colorscheme ~/.config/tmux $theme $variant conf
+  apply_colorscheme ~/.config/mako $theme $variant conf
+  apply_colorscheme ~/.config/sway $theme $variant conf
+  apply_colorscheme ~/.config/foot $theme $variant ini
+  apply_colorscheme ~/.config/waybar $theme $variant css
 fi

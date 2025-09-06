@@ -6,7 +6,16 @@ exec swayidle
 exec mako
 exec pipewire
 exec mpd
-exec ~/.scripts/wallpaper.sh
+
+### GTH theme
+set $gnome-schema org.gnome.desktop.interface
+
+# exec_always {
+#     gsettings set $gnome-schema gtk-theme 'Papirus'
+#     gsettings set $gnome-schema icon-theme 'Papirus'
+#     gsettings set $gnome-schema cursor-theme 'Your cursor Theme'
+#     gsettings set $gnome-schema font-name 'Your font name'
+# }
 
 set $mod Mod4
 set $left h
@@ -53,7 +62,7 @@ input "*" {
 bindsym Print exec grimshot --notify save area
 
 # Change wallpaper
-bindsym $mod+Shift+w exec ~/.scripts/colorscheme.sh
+bindsym $mod+Shift+w exec ~/.scripts/colorscheme.py --wallpaper random
 
 # Start a terminal
 bindsym $mod+Return exec $term

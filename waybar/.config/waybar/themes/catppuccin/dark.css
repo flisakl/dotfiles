@@ -32,17 +32,13 @@ window#waybar {
     font-size: 11px;
 }
 
-.modules-left,
-.modules-right {
-  margin: 5px 0;
-}
 
 #workspaces, #language, #backlight, #pulseaudio, #clock, #battery, #disk, #network {
     padding: 0 8px;
     margin: 0 3px;
     color: @text;
     border-radius: 2px;
-    background: @base;
+    background: @crust;
     color: @text;
 }
 
@@ -55,8 +51,9 @@ window#waybar {
     margin: 0;
     font-weight: bold;
     border-radius: 2px;
+    background-color: @surface0;
     color: @text;
 }
-#workspaces button.focused { background-color: @red; color: @base }
-#workspaces button.persistent { color: @surface0; }
+#workspaces button.focused { background-color: @peach; color: @base }
+#workspaces button.persistent { background-color: @crust; }
 

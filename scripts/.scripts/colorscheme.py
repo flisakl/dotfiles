@@ -211,6 +211,11 @@ if any([initial_theme != theme, initial_variant != variant]):
     if initial_variant != variant:
         change_wallpaper(variant)
 
+    if variant == "dark":
+        subprocess.Popen(['pkill', '-USR2', 'foot'])
+    else:
+        subprocess.Popen(['pkill', '-USR1', 'foot'])
+
     # Make applications reload their config files
     subprocess.Popen(['makoctl', 'reload'])
     subprocess.Popen(['pkill', '-USR1', 'nvim'])

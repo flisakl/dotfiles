@@ -11,9 +11,10 @@ import json
 sunset_file = "/tmp/sunset.json"
 theme_file = os.path.expanduser("~/.cache/theme.json")
 theme_directory = os.path.expanduser("~/.config/foot/themes")
-latitude = 49.7849800
-lontitude = 22.7672800
-timezone = "Europe/Warsaw"
+
+latitude = None
+longtitude = None
+timezone = None
 
 theme = None
 variant = None
@@ -24,6 +25,9 @@ if os.path.exists(theme_file):
     with open(theme_file, "r") as f:
         data = json.load(f)
         initial_theme, initial_variant = data["theme"], data["variant"]
+        latitude = data.get("latitude")
+        longtitude = data.get("longtitude")
+        timezone = data.get("timezone")
 else:
     initial_theme = "catppuccin"
     initial_variant = "dark"
@@ -36,9 +40,11 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument(
-    '--sunset', help='switch between dark and light mode based on sunset', action='store_true')
+    '--sunset', help='switch between dark and light mode based on sunset',
+    action='store_true')
 parser.add_argument(
-    '--toggle', help='switch from dark to light mode and vice versa', action='store_true')
+    '--toggle', help='switch from dark to light mode and vice versa',
+    action='store_true')
 parser.add_argument(
     '--dark', help='apply dark version of colorscheme', action='store_true')
 parser.add_argument(
@@ -46,14 +52,18 @@ parser.add_argument(
 parser.add_argument(
     '-l', '--list', help='list available colorschemes', action='store_true')
 parser.add_argument(
-    'colorscheme', help='name of the colorscheme to apply', nargs='?', default=None)
+    'colorscheme', help='name of the colorscheme to apply', nargs='?',
+    default=None)
 
 arguments = parser.parse_args()
 
 if all([arguments.dark, arguments.light]):
     sys.exit("Pick either dark or light variant")
-if all([arguments.toggle, any([arguments.dark, arguments.light, arguments.sunset])]):
-    sys.exit("--toggle option is mutually exclusive with --dark and --light options")
+if all([arguments.toggle,
+        any([arguments.dark, arguments.light, arguments.sunset])]):
+    sys.exit(
+        "--toggle option is mutually exclusive with --dark and --light options"
+    )
 
 colorschemes = os.listdir(theme_directory)
 
@@ -74,12 +84,16 @@ if arguments.light:
 
 if arguments.sunset:
 
+    if not any([latitude, longtitude, timezone]):
+        sys.exit(
+            "timezone, latitude and longtitude are required to use --sunset")
+
     if not os.path.exists(sunset_file):
         import requests
 
         params = {
             "lat": latitude,
-            "lng": lontitude,
+            "lng": longtitude,
             "formatted": 1,
             "tzid": timezone
         }
@@ -170,13 +184,21 @@ if any([initial_theme != theme, initial_variant != variant]):
 
     print("Updating theme file")
     with open(theme_file, "w") as f:
-        data = json.dump({"theme": theme, "variant": variant}, f)
+        data = json.dump(
+            {
+                "theme": theme,
+                "variant": variant,
+                "latitude": latitude,
+                "longtitude": longtitude,
+                "timezone": timezone
+            }, f)
 
     directories = [
         "~/.config/foot",
         "~/.config/sway",
         "~/.config/waybar",
         "~/.config/tmux",
+        "~/.config/wofi",
     ]
 
     for d in directories:
@@ -188,9 +210,9 @@ if any([initial_theme != theme, initial_variant != variant]):
     if initial_variant != variant:
         change_wallpaper(variant)
 
-        # Reload sway
-        subprocess.Popen(['swaymsg', 'reload'])
-        # Reload tmux
-        process = subprocess.Popen(
-            ['tmux', 'source-file',
-             os.path.expanduser('~/.config/tmux/tmux.conf')])
+    # Make applications reload their config files
+    subprocess.Popen(['pkill', '-USR1', 'nvim'])
+    subprocess.Popen(['swaymsg', 'reload'])
+    process = subprocess.Popen(
+        ['tmux', 'source-file',
+         os.path.expanduser('~/.config/tmux/tmux.conf')])

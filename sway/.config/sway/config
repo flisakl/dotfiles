@@ -61,8 +61,8 @@ input "*" {
 # Take screenshot
 bindsym Print exec grimshot --notify save area
 
-# Change wallpaper
-bindsym $mod+Shift+w exec ~/.scripts/colorscheme.py --wallpaper random
+# Toggle between dark and light variant of current theme
+bindsym $mod+Shift+w exec ~/.scripts/colorscheme.py --toggle
 
 # Start a terminal
 bindsym $mod+Return exec $term

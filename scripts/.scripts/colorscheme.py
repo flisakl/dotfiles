@@ -211,15 +211,17 @@ if any([initial_theme != theme, initial_variant != variant]):
     if initial_variant != variant:
         change_wallpaper(variant)
 
-    if variant == "dark":
-        subprocess.Popen(['pkill', '-USR2', 'foot'])
-    else:
-        subprocess.Popen(['pkill', '-USR1', 'foot'])
+    commands = [
+    'makoctl reload',
+    'pkill -USR1 nvim',
+    'pkill -USR1 qutebrowser',
+    'swaymsg reload',
+    f"tmux source-file {os.path.expanduser('~/.config/tmux/tmux.conf')}",
+    ]
 
-    # Make applications reload their config files
-    subprocess.Popen(['makoctl', 'reload'])
-    subprocess.Popen(['pkill', '-USR1', 'nvim'])
-    subprocess.Popen(['swaymsg', 'reload'])
-    process = subprocess.Popen(
-        ['tmux', 'source-file',
-         os.path.expanduser('~/.config/tmux/tmux.conf')])
+    if variant == "dark":
+        commands.append('pkill -USR2 foot')
+    else:
+        commands.append('pkill -USR1 foot')
+
+    subprocess.run("; ".join(commands), shell=True, capture_output=False)

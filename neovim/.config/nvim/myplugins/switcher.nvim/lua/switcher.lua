@@ -14,7 +14,9 @@ M.setup = function(themes)
   user_themes = themes
   vim.api.nvim_create_autocmd({ "Signal" }, {
     pattern = { "SIGUSR1" },
-    callback = M.apply
+    callback = function()
+      vim.schedule(M.apply)
+    end
   })
 
   M.apply()

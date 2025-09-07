@@ -1,4 +1,5 @@
 import os
+import signal
 from urllib.request import urlopen
 from qutebrowser.config.configfiles import ConfigAPI  # noqa: F401
 from qutebrowser.config.config import ConfigContainer  # noqa: F401
@@ -14,10 +15,8 @@ config.bind("<Ctrl-r>", "config-source", "normal")
 c.content.autoplay = False
 c.downloads.position = "bottom"
 c.downloads.remove_finished = 10000
-c
 c.fonts.default_family = "CaskaydiaMono Nerd Font"
 c.fonts.default_size = "14px"
-c
 c.scrolling.bar = "always"
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
@@ -37,5 +36,29 @@ if not os.path.exists(config.configdir / "theme.py"):
             file.writelines(themehtml.read().decode("utf-8"))
 
 if os.path.exists(config.configdir / "theme.py"):
-    import theme
-    theme.setup(c, 'mocha', True)
+    import theme as theme_manager
+
+    def apply_colorscheme(_dummy = None, _dummy2 = None):
+        p = os.path.expanduser("~/.cache/theme.json")
+        theme = "catppuccin"
+        variant = "light"
+
+        if os.path.exists(p):
+            import json
+
+            with open(p, "r") as f:
+                data = json.load(f)
+                theme = data["theme"]
+                variant = data["variant"]
+
+        if variant == "dark":
+            c.colors.webpage.darkmode.enabled = True
+            theme_manager.setup(c, 'mocha', False)
+        else:
+            c.colors.webpage.darkmode.enabled = False
+            theme_manager.setup(c, 'latte', False)
+
+
+    signal.signal(signal.SIGUSR1, apply_colorscheme)
+
+    apply_colorscheme()

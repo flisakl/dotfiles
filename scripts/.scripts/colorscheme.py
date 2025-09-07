@@ -199,6 +199,7 @@ if any([initial_theme != theme, initial_variant != variant]):
         "~/.config/waybar",
         "~/.config/tmux",
         "~/.config/wofi",
+        "~/.config/mako",
     ]
 
     for d in directories:
@@ -211,6 +212,7 @@ if any([initial_theme != theme, initial_variant != variant]):
         change_wallpaper(variant)
 
     # Make applications reload their config files
+    subprocess.Popen(['makoctl', 'reload'])
     subprocess.Popen(['pkill', '-USR1', 'nvim'])
     subprocess.Popen(['swaymsg', 'reload'])
     process = subprocess.Popen(

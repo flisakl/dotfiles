@@ -4,7 +4,6 @@ allow_markup=true
 hide_scroll=true
 insensitive=true
 parse_search=true
-gtk_dark=true
 location=0
 width=45%
 key_forward=Ctrl-n

@@ -5,7 +5,7 @@ Dotfiles for my Void Linux setup.
 ## Features
 
 - [X] installation script for fresh void installations
-- [X} dynamic switching between themes and their dark and light modes
+- [X] dynamic switching between themes and their dark and light modes
 
 ## Applications
 

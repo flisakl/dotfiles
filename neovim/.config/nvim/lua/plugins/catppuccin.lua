@@ -18,8 +18,5 @@ return {
         percentage = 0.15,
       },
     })
-
-    -- setup must be called before loading
-    vim.cmd.colorscheme "catppuccin"
   end
 }

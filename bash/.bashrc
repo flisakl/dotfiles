@@ -28,6 +28,7 @@ function mpvp () {
 alias lm='latexmk -pdf -pvc -output-directory=output main.tex'
 
 # Void Linux specific aliases
+alias ss='xbps-query -Rs'
 alias reboot='loginctl reboot'
 alias poweroff='loginctl poweroff'
 alias purge='sudo vkpurge rm all'
@@ -73,7 +74,6 @@ tl () {
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'
 PS1='\[\e[93m\][\u\[\e[0m\]@\[\e[95m\]\H]\[\e[0m\] \[\e[96m\]\w\[\e[0m\] \[\e[91m\]${PS1_CMD1}\[\e[0m\] \$ '
 
-export PATH="${PATH}:${HOME}/.scripts/"
 GPG_TTY=$(tty)
 SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export GPG_TTY
@@ -85,5 +85,8 @@ export EDITOR='nvim'
 
 # Start sway session
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-    exec dbus-run-session sway
+    exec dbus-run-session niri --session
 fi
+
+# Make nix available
+if [ -e /home/dev/.nix-profile/etc/profile.d/nix.sh ]; then . /home/dev/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

@@ -84,7 +84,6 @@ layout {
   // Set gaps around windows in logical pixels.
   gaps 10
   background-color "transparent"
-  always-center-single-column
   center-focused-column "never"
   preset-column-widths {
     proportion 0.33333
@@ -94,10 +93,6 @@ layout {
 
   default-column-width { proportion 0.5; }
   focus-ring {
-    // Uncomment this line to disable the focus ring.
-    // off
-
-    // How many logical pixels the ring extends out from the windows.
     width 3
     active-color "#7fc8ff"
     inactive-color "#00000000"
@@ -230,8 +225,8 @@ binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
   // Suggested binds for running programs: terminal, app launcher, screen locker.
-  Mod+T repeat=false hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
-  Mod+Return repeat=false hotkey-overlay-title="Run an Application: noctalia launcher" { spawn "qs" "ipc" "call" "launcher" "toggle"; }
+  Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
+  Mod+P repeat=false hotkey-overlay-title="Run an Application: noctalia launcher" { spawn "qs" "ipc" "call" "launcher" "toggle"; }
   Mod+Y repeat=false hotkey-overlay-title="Launch power menu" { spawn "qs" "ipc" "call" "sessionMenu" "toggle"; }
   // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
@@ -243,9 +238,6 @@ binds {
   XF86AudioMute        allow-when-locked=true { spawn "qs" "ipc" "call" "volume" "muteOutput"; }
   XF86AudioMicMute     allow-when-locked=true { spawn "qs" "ipc" "call" "volume" "muteInput"; }
 
-  // Example brightness key mappings for brightnessctl.
-  // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
-  // but you need to manually put each argument in separate "" quotes.
   XF86MonBrightnessUp allow-when-locked=true { spawn "qs" "ipc" "call" "brightness" "increase"; }
   XF86MonBrightnessDown allow-when-locked=true { spawn "qs" "ipc" "call" "brightness" "decrease"; }
 
@@ -256,53 +248,21 @@ binds {
 
   Mod+Q repeat=false { close-window; }
 
-  Mod+P     { focus-column-left; }
-  Mod+N     { focus-column-right; }
-  Mod+H     { focus-monitor-left; }
-  Mod+L     { focus-monitor-right; }
+  Mod+H     { focus-column-or-monitor-left; }
+  Mod+L     { focus-column-or-monitor-right; }
+  Mod+J     { focus-window-down; }
+  Mod+K     { focus-window-up; }
 
-  Mod+Shift+P     { move-column-left; }
-  Mod+Shift+N     { move-column-right; }
+  Mod+Shift+H     { swap-window-left; }
+  Mod+Shift+L     { swap-window-right; }
+  Mod+Shift+J     { move-window-down; }
+  Mod+Shift+K     { move-window-up; }
 
-  Mod+Shift+H     { move-column-to-monitor-left; }
-  Mod+Shift+L     { move-column-to-monitor-right; }
-
-
-  // Similarly, you can bind touchpad scroll "ticks".
-  // Touchpad scrolling is continuous, so for these binds it is split into
-  // discrete intervals.
-  // These binds are also affected by touchpad's natural-scroll, so these
-  // example binds are "inverted", since we have natural-scroll enabled for
-  // touchpads by default.
-  // Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
-  // Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
-
-  // You can refer to workspaces by index. However, keep in mind that
-  // niri is a dynamic workspace system, so these commands are kind of
-  // "best effort". Trying to refer to a workspace index bigger than
-  // the current workspace count will instead refer to the bottommost
-  // (empty) workspace.
-  //
-  // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-  // will all refer to the 3rd workspace.
-  Mod+1 { focus-workspace 1; }
-  Mod+2 { focus-workspace 2; }
-  Mod+3 { focus-workspace 3; }
-  Mod+4 { focus-workspace 4; }
-  Mod+5 { focus-workspace 5; }
-  Mod+6 { focus-workspace 6; }
-  Mod+7 { focus-workspace 7; }
-  Mod+8 { focus-workspace 8; }
-  Mod+9 { focus-workspace 9; }
-  Mod+Ctrl+1 { move-column-to-workspace 1; }
-  Mod+Ctrl+2 { move-column-to-workspace 2; }
-  Mod+Ctrl+3 { move-column-to-workspace 3; }
-  Mod+Ctrl+4 { move-column-to-workspace 4; }
-  Mod+Ctrl+5 { move-column-to-workspace 5; }
-  Mod+Ctrl+6 { move-column-to-workspace 6; }
-  Mod+Ctrl+7 { move-column-to-workspace 7; }
-  Mod+Ctrl+8 { move-column-to-workspace 8; }
-  Mod+Ctrl+9 { move-column-to-workspace 9; }
+  // Instead of focusing workspaces I'd rather focus the monitor
+  Mod+1 { focus-monitor "HDMI-A-1"; }
+  Mod+2 { focus-monitor "eDP-1"; }
+  Mod+Shift+1 { move-window-to-monitor "HDMI-A-1"; }
+  Mod+Shift+2 { move-window-to-monitor "eDP-1"; }
 
   // Alternatively, there are commands to move just a single window:
   // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -315,6 +275,8 @@ binds {
   // If the window is already in a column, they will expel it out.
   Mod+BracketLeft  { consume-or-expel-window-left; }
   Mod+BracketRight { consume-or-expel-window-right; }
+  Mod+U { focus-workspace-down; }
+  Mod+I { focus-workspace-up; }
 
   // Consume one window from the right to the bottom of the focused column.
   Mod+Comma  { consume-window-into-column; }

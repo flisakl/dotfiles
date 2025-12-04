@@ -89,4 +89,4 @@ if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
 fi
 
 # Make nix available
-if [ -e /home/dev/.nix-profile/etc/profile.d/nix.sh ]; then . /home/dev/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e /home/${USER}/.nix-profile/etc/profile.d/nix.sh ]; then . /home/${USER}/.nix-profile/etc/profile.d/nix.sh; fi

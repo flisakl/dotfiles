@@ -1,8 +1,0 @@
-include=~/.config/mako/current.conf
-on-button-left=dismiss-all
-font=CaskaydiaMono Nerd Font 12
-padding=20,15
-anchor=top-right
-height=200
-border-size=3
-default-timeout=0

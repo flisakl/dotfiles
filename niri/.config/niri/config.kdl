@@ -1,6 +1,8 @@
 environment {
- QT_QPA_PLATFORMTHEME "qt6ct"
- QT_QPA_PLATFORM "wayland"
+  // Enable numlock on startup, omitting this setting disables it.
+  QT_QPA_PLATFORMTHEME "qt6ct"
+  QT_QPA_PLATFORM "wayland"
+  MOZ_ENABLE_WAYLAND "1"
 }
 
 cursor {
@@ -15,41 +17,18 @@ input {
       options "caps:escape,grp:rctrl_toggle"
     }
 
-    // Enable numlock on startup, omitting this setting disables it.
     numlock
   }
 
   touchpad {
-    // off
     tap
     dwt
-    // dwtp
-    // drag false
-    // drag-lock
-    natural-scroll
-    // accel-speed 0.2
-    // accel-profile "flat"
-    // scroll-method "two-finger"
-    // disabled-on-external-mouse
   }
 
   mouse {
-    // off
-    // natural-scroll
-    // accel-speed 0.2
-    // accel-profile "flat"
-    // scroll-method "no-scroll"
   }
 
   trackpoint {
-    // off
-    // natural-scroll
-    // accel-speed 0.2
-    // accel-profile "flat"
-    // scroll-method "on-button-down"
-    // scroll-button 273
-    // scroll-button-lock
-    // middle-emulation
   }
 
   // Uncomment this to make the mouse warp to the center of newly focused windows.
@@ -57,17 +36,20 @@ input {
   focus-follows-mouse max-scroll-amount="0%"
 }
 
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://yalter.github.io/niri/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
+switch-events {
+  lid-close { spawn "qs" "ipc" "call" "lockScreen" "lock"; }
+}
+
 output "HDMI-A-1" {
   mode "1440x900"
   scale 1
   transform "normal"
   position x=0 y=0
+
+  layout {
+    default-column-width { proportion 1.0; }
+    gaps 0
+  }
 }
 
 output "eDP-1" {
@@ -75,6 +57,7 @@ output "eDP-1" {
   scale 1
   transform "normal"
   position x=1440 y=0
+  focus-at-startup
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -185,23 +168,41 @@ screenshot-path "~/media/screenshots/%Y-%m-%d %H-%M-%S.png"
 // The wiki explains how to configure individual animations:
 // https://yalter.github.io/niri/Configuration:-Animations
 animations {
-  // Uncomment to turn off all animations.
-  // off
-
-  // Slow down all animations by this factor. Values below 1 speed them up instead.
-  // slowdown 3.0
-}
-
-window-rule {
-  match app-id="Firefox$"
-  open-maximized true
-  open-on-output "HDMI-A-1"
-  open-focused true
 }
 
 window-rule {
   geometry-corner-radius 0
   clip-to-geometry true
+}
+
+window-rule {
+  match app-id="Firefox"
+  open-maximized true
+  open-on-workspace "reading"
+  open-focused true
+}
+
+// Indicate screencasted windows with red colors.
+window-rule {
+  match is-window-cast-target=true
+
+  focus-ring {
+    active-color "#f38ba8"
+    inactive-color "#7d0d2d"
+  }
+
+  border {
+    inactive-color "#7d0d2d"
+  }
+
+  shadow {
+    color "#7d0d2d70"
+  }
+
+  tab-indicator {
+    active-color "#f38ba8"
+    inactive-color "#7d0d2d"
+  }
 }
 
 debug {
@@ -362,3 +363,8 @@ overview {
     off
   }
 }
+
+workspace "reading" {
+  open-on-output "HDMI-A-1"
+}
+
